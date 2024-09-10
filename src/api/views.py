@@ -66,7 +66,8 @@ def query(request: HttpRequest) -> HttpResponse:
                 measurement_url=measurement or "",
             )
 
-        except Exception:
+        except Exception as e:
+            logger.exception(e)
             result = HttpResponseServerError()
 
     return result
