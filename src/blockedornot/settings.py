@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # "django.contrib.messages",
     # "django.contrib.staticfiles",
     "django_structlog",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = "blockedornot.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": environ.get("POSTGRES_DB", "legisweb"),
+        "USER": environ.get("POSTGRES_USER", "legisweb"),
+        "PASSWORD": environ.get("POSTGRES_PASSWORD", "abc123"),
+        "HOST": environ.get("DATABASE_HOST", "localhost"),
+        "PORT": environ.get("DATABASE_PORT", "5432"),
     }
 }
 
