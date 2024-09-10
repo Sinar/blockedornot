@@ -1,0 +1,20 @@
+name: image builder dev
+run-name: Building new docker containers
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set lower case owner name
+        run: echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.repository_owner }}'
+      - name: Set current date as env variable
+        run: echo "TODAY=$(date +'%Y%m%d')" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y podman
+      - run: echo ${{ secrets.GITHUB_TOKEN }} | podman login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      - run: podman build --tag "ghcr.io/$OWNER_LC/blockedornot-frontend:$TODAY" -f ./podman/frontend/Dockerfile .
+      - run: podman build --tag "ghcr.io/$OWNER_LC/blockedornot-backend:$TODAY" -f ./podman/backend/Dockerfile .
+      - run: podman push "ghcr.io/$OWNER_LC/blockedornot-frontend:$TODAY"
+      - run: podman push "ghcr.io/$OWNER_LC/blockedornot-backend:$TODAY"
