@@ -111,16 +111,17 @@ function ResultExplanation({ result }) {
 	if (result.blocked) {
 		text = (
 			<p>
-				A well-known IP hosted by the government for blocked websites is
-				returned by our ISP/Telco DNS.
+				Instead of the intended IP address, this URL is being directed by TMNet
+				(AS4788) DNS server to the IP address 175.139.142.25 for websites
+				blocked by MCMC.
 			</p>
 		);
 	} else if (result.blocked === false && result.different_ip) {
 		text = (
 			<p>
-				Different sets of IPs were received from our ISP/Telco and a well-known
-				public DNS provider. It could be due to the use of Content Delivery
-				Network by the website operator.
+				Different sets of IPs were received from our TMNet (AS4788) and a
+				well-known public DNS provider. It could be due to the use of Content
+				Delivery Network by the website operator.
 			</p>
 		);
 	}
