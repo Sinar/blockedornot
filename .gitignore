@@ -1,0 +1,62 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.node-version
+
+node_modules
+dist
+dist-ssr
+*.local
+
+certificates
+podman/opensearch/usr/share/opensearch/config/opensearch-security/*
+
+#yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# python
+*.pyc
+
+# Packages
+/dist/*
+
+# Unit test / coverage reports
+.coverage
+.pytest_cache
+
+.DS_Store
+.idea/*
+.python-version
+.vscode/*
+
+/docs/site/*
+.mypy_cache
+__pycache
+
+.venv
+/poetry.toml
+
+# podman data
+podman/frontend/data
